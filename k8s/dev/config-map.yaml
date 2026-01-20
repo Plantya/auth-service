@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-service-config-map
+  namespace: plantya-dev
+data:
+  SPRING_APPLICATION_NAME: 'auth-service'
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: 'org.postgresql.Driver'
+  SPRING_JACKSON_PROPERTY_NAMING_STRATEGY: 'SNAKE_CASE'
