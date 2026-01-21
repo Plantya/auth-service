@@ -66,9 +66,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        dir("${APP_DIR}") {
-          sh 'mvn -B -DskipTests=true clean package'
-        }
+        sh 'mvn -B -DskipTests=true clean package'
       }
     }
 
