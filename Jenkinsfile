@@ -53,9 +53,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        dir("${APP_DIR}") {
-          sh 'mvn -B -DskipTests=false test'
-        }
+        sh 'mvn -B -DskipTests=false test'
       }
       post {
         always {
