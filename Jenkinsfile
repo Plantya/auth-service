@@ -8,10 +8,9 @@ pipeline {
   }
 
   environment {
-    APP_DIR = 'auth-service'
-    DOCKERFILE = 'auth-service/Dockerfile'
-    CONFIGMAP_YAML = 'auth-service/k8s/dev/config-map.yaml'
-    DEPLOYMENT_YAML = 'auth-service/k8s/dev/deployment.yaml'
+    DOCKERFILE = 'Dockerfile'
+    CONFIGMAP_YAML = 'k8s/dev/config-map.yaml'
+    DEPLOYMENT_YAML = 'k8s/dev/deployment.yaml'
 
     DO_REGISTRY = 'registry.digitalocean.com/plantya-registry'
     IMAGE_NAME = 'auth-service'
@@ -57,7 +56,7 @@ pipeline {
       }
       post {
         always {
-          junit allowEmptyResults: true, testResults: "${APP_DIR}/target/surefire-reports/*.xml"
+          junit allowEmptyResults: true, testResults: "/target/surefire-reports/*.xml"
         }
       }
     }
@@ -68,6 +67,16 @@ pipeline {
       }
     }
 
+    stage('Debug Workspace') {
+      steps {
+        sh '''
+          pwd
+          ls -la
+          ls -la auth-service || true
+        '''
+      }
+    }
+    
     stage('Docker Build') {
       steps {
         sh '''
