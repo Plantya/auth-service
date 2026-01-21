@@ -71,7 +71,7 @@ pipeline {
     stage('Docker Build') {
       steps {
         sh '''
-          docker build -f "${DOCKERFILE}" -t "${FULL_IMAGE}" ""
+          docker build -f "${DOCKERFILE}" -t "${FULL_IMAGE}" "."
           docker tag "${FULL_IMAGE}" "${FULL_IMAGE_DEV_LATEST}"
         '''
       }
